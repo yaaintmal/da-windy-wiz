@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Lesson 2 - 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-mal: orange;
+        --color-sad: #cc0000;
+      }
+
+      .dark {
+        @apply bg-gray-900;
+      }
+
+      .dark .bg-white {
+        @apply bg-gray-800;
+      }
+
+      .dark .text-gray-100 {
+        @apply text-gray-200;
+      }
+
+      .dark .text-gray-200 {
+        @apply text-gray-300;
+      }
+
+      @layer base {
+        .text-mal {
+          @apply text-mal;
+        }
+        .text-sad {
+          @apply text-sad;
+        }
+        h3 {
+          @apply text-2xl font-bold text-center text-mal;
+        }
+        p {
+          @apply mt-2 text-sm text-slate-500 dark:text-blue-100;
+        }
+      }
+
+      @layer components {
+        .card {
+          @apply m-10 rounded-lg bg-white px-6 py-8 shadow-xl ring-1 ring-slate-900/5 dark:bg-black;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-900">
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleDark = document.getElementById("toggleDark");
+        toggleDark.addEventListener("click", () => {
+          console.log("Button clicked!");
+          document.body.classList.toggle("dark");
+        });
+      });
+    </script>
+    <div
+      class="bg-violot-gray h-10 w-full border-2 border-yellow-600 rounded-md my-4 p-2 flex justify-center items-center items-center"
+    >
+      <h1 class="text-center font-mono font-extrabold text-cyan-400">
+        Hello from Tailwind!
+      </h1>
+    </div>
+    <p class="text-2xl font-bold text-center text-mal">L1</p>
+    <div class="flex justify-around items-center space-x-2 mt-2">
+      <div class="h-10 w-10 rounded-full bg-black"></div>
+      <div class="h-10 w-10 rounded-full bg-mal"></div>
+      <div class="h-10 w-10 rounded-full bg-black"></div>
+    </div>
+    <p class="text-2xl font-bold text-center text-mal">L2</p>
+    <div class="grid md:grid-cols-1 gap-2 mt-2 mx-2">
+      <div class="h-10 w-10 rounded-full bg-black"></div>
+      <div class="h-10 w-10 rounded-full bg-mal"></div>
+      <div class="h-10 w-10 rounded-full bg-black"></div>
+    </div>
+    <div class="md:block hidden">
+      <p class="text-2xl font-bold text-center text-sad">
+        L3 only appears on screens wider than 768px :3
+      </p>
+    </div>
+    <div class="sm:bg-amber-400 md:bg-amber-700">
+      <p class="text-2xl font-bold text-center text-sad text-white">
+        L4 will change its bg-color on screens wider than 640px and loose its
+        color on screens smaller than 768px
+      </p>
+    </div>
+
+    <div
+      class="m-10 rounded-lg bg-white px-6 p-8 shadow-xl ring-1 ring-slate-900/5 dark:bg-black"
+    >
+      <p class="text-2xl font-bold text-center text-mal">L5</p>
+      <h3
+        class="text-base font-medium tracking-tight text-slate-900 dark:text-white"
+      >
+        Your WBS Journey
+      </h3>
+      <p class="mt-2 text-sm text-slate-500 dark:text-blue-100">
+        Take your chance to achieve the next level with WBS Coding School.
+      </p>
+      <button
+        id="toggleDark"
+        class="px-4 py-2 text-sm font-medium mt-8 text-blue-900 bg-blue-100 rounded-md cursor-pointer"
+      >
+        But first: toggle Dark Mode
+      </button>
+    </div>
+    <p class="text-2xl font-bold text-center text-mal">L6</p>
+    <div class="card">
+      <p>Same result, using tailwindcss-directives, e.g. as a card-component</p>
+    </div>
+    <p class="text-2xl font-bold text-center text-mal">L7</p>
+    <p class="text-[min(10vw,70px)]">Be like water my friend, be fluid!</p>
+  </body>
+</html>
